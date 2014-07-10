@@ -17,7 +17,7 @@ int main () {
     }
     
     printVector(ar);
-    insertionSort(&ar, len);
+    insertionSortPrint(&ar, len);
     printVector(ar);
     
 }
