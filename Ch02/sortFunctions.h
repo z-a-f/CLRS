@@ -107,3 +107,50 @@ void mergeSort(std::vector<int> *ar, int p, int r) {
 		merge(ar, p, q, r);
 	}
 }
+
+void mergeNoSent(std::vector<int> *ar, int p, int q, int r) { // For p2.3-1
+	int n1 = q - p + 1;
+	int n2 = r - q;
+	
+	std::vector<int> L;
+	std::vector<int> R;
+	
+	for (int i = 0; i < n1; i++) {
+		L.push_back(ar->at(p + i));
+	}
+	for (int i = 0; i < n2; i++) {
+		R.push_back(ar->at(q + i + 1));
+	}
+	
+	int i = 0, j = 0;
+	for (int k = p; k <= r; k++) {
+		if(i < n1 && j < n2) {
+			if ( L[i] <= R[j] ) {
+				ar->at(k) = L[i];
+				i++;
+			} else {
+				ar->at(k) = R[j];
+				j++;
+			}
+		} else if (i >= n1 && j < n2) {
+			// Copy R to the ar:
+			std::copy(R.begin() + j, R.end(), ar->begin() + k);
+			return;
+		} else if (i < n1 && j >= n2) {
+			std::copy(L.begin() + i, L.end(), ar->begin() + k);
+			return;
+		} else {
+			return;
+		}
+	}
+}
+
+void mergeSortNoSent(std::vector<int> *ar, int p, int r) { // For p2.3-1
+	int q;
+	if (p < r) {
+		q = floor((p+r) / 2.0);
+		mergeSortNoSent(ar, p, q);
+		mergeSortNoSent(ar, q + 1, r);
+		mergeNoSent(ar, p, q, r);
+	}
+}
