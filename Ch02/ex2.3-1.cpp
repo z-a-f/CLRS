@@ -1,6 +1,5 @@
-#include <iostream>
-#include <vector>
 
+#include "myIncludes.h"
 #include "myFunctions.h"
 
 using namespace std;
@@ -15,8 +14,7 @@ int main () {
         cin >> num;
         ar.push_back(num);
     }
-
-    printVector(ar);
-    insertionSortReverse(&ar, len);	// Solution is in the myFunctions.h
+    
+    mergeSort(&ar, 0, len-1);
     printVector(ar);
 }

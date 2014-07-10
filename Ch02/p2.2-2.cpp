@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int main () {
+int main() {
 	int len, num;
     cin >> len;
     
@@ -15,8 +15,7 @@ int main () {
         cin >> num;
         ar.push_back(num);
     }
-
-    printVector(ar);
-    insertionSortReverse(&ar, len);	// Solution is in the myFunctions.h
+    
+    selectionSort(&ar, len);
     printVector(ar);
 }

@@ -15,8 +15,7 @@ int main () {
         cin >> num;
         ar.push_back(num);
     }
-
-    printVector(ar);
-    insertionSortReverse(&ar, len);	// Solution is in the myFunctions.h
-    printVector(ar);
+    cin >> num;
+    
+    cout << linSearch(ar, num) << endl;
 }
