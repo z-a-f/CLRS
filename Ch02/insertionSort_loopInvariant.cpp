@@ -1,7 +1,5 @@
-#include <vector>
-#include <iostream>
-
-#include "myFunctions.h" 
+#include "myIncludes.h"
+#include "myFunctions.h"
 
 using namespace std;
 

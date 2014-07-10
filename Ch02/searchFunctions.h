@@ -1,3 +1,12 @@
+#ifndef __MY__INCLUDES__H
+#include "myIncludes.h"
+#endif
+
+#ifndef __MY__OTHER__FUNCTIONS__H
+#include "otherFunctions.h"
+#endif
+////////////////////////////////////////////////////////////////////////////////////////
+
 
 int linSearch (std::vector<int> ar, int num) { // p2.1-3 for Loop invariant
 	int i = 0;
