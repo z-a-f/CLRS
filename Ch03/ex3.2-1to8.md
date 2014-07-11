@@ -13,4 +13,4 @@ g(m) &le; g(n)
 Adding both sides of the inequalities: <br>
 f(m) + g(m) &le; f(n) + g(n) <br>
 => h(m) &le; h(n)
-1. test
+2. 
