@@ -42,7 +42,7 @@ void insertionSortPrint(std::vector<int> *ar, int len) {
         // insert ar[j] into the stored sequency ar[0...j-1]:
         i = j - 1;
         while (i >= 0 && ar->at(i) > key) {     // Array starts from 0, so it's different from the book
-        	std::cout << "j,i: " << j << i << "\t Key: " << key << "\t";
+        	std::cout << "j, i: " << j << i << "\t Key: " << key << "\t";
         	printVector(*ar);
             ar->at(i+1) = ar->at(i);
             i--;
@@ -50,6 +50,23 @@ void insertionSortPrint(std::vector<int> *ar, int len) {
         ar->at(i+1) = key;
     }
 }
+
+void insertionSortRange(std::vector<int> *ar, int p, int r) {
+    int key;
+    int len = r - p + 1;
+    for (int j = 1, i; j < len; j++) {
+        key = ar->at(j + p);
+        // insert ar[j] into the stored sequency ar[0...j-1]:
+        i = j - 1;
+        while (i >= 0 && ar->at(i) > key) {     // Array starts from 0, so it's different from the book
+            ar->at(i + 1 + p) = ar->at(i + p);
+            i--;
+        }
+        ar->at(i + 1 + p) = key;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
 
 void selectionSort(std::vector<int> *ar, int len) {
 	int min;
@@ -68,6 +85,8 @@ void selectionSort(std::vector<int> *ar, int len) {
 		}
 	}
 }
+
+////////////////////////////////////////////////////////////////////////////////////////
 
 void merge(std::vector<int> *ar, int p, int q, int r) {
 	int n1 = q - p + 1;
@@ -153,4 +172,31 @@ void mergeSortNoSent(std::vector<int> *ar, int p, int r) { // For p2.3-1
 		mergeSortNoSent(ar, q + 1, r);
 		mergeNoSent(ar, p, q, r);
 	}
+}
+
+void mergeInsertionSort (std::vector<int> *ar, int p, int r, int k) {
+	if (r - p <= k) {
+		insertionSortRange(ar, p, r);
+		return;
+	}
+
+	int q;
+	if (p < r) {
+		q = floor((p+r) / 2.0);
+		mergeInsertionSort(ar, p, q, 3);
+		mergeInsertionSort(ar, q+1, r, 3);
+		merge(ar, p, q, r);
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+void bubbleSort (std::vector<int> *ar, int len) {
+	for (int i = 0; i < len - 1; i++) {
+		for (int j = len - 1; j > i; j--) {
+			if (ar->at(j) < ar->at(j-1)) {
+				swap (&ar->at(j), &ar->at(j-1));
+			}
+		}
+	} 
 }
