@@ -2,7 +2,7 @@
 ## 3.1-1
 Given h(n) = max(f(n), g(n)) it is obvious that the higher order component of h(n) will be the same as the highest component of f(n)+g(n), which means O(h(n)) = O(f(n) + g(n)) => the worst case running time.
 
-The best case running time for h(n) would be the best case running time of either f(n) or h(n), depending which is bigger => \(h(n) = &Omega;(f(n) + g(n))\).
+The best case running time for h(n) would be the best case running time of either f(n) or h(n), depending which is bigger => h(n) = &Omega;(f(n) + g(n)).
 
 Thus, h(n) = &Theta;(f(n)+g(n))
 
