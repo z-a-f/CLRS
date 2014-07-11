@@ -46,7 +46,15 @@ n!	= n * (n - 1)	* ...	* 5	* 4	* 3	* 2	* 1
 	= n * (n - 1)	* ...	* 5	* 2	* 3	* 2	* 2
 2^n	= 2 * 2 		* ...	* 2	* 2	* 2	* 2 * 2
 ```
-As every element in n! is greater then every element in 2^n (except two), n! always grows faster then c*2^n. Thus, n! = &omega;(2^n)
+As every element in n! is greater then every element in 2^n (except two), n! ALWAYS grows faster then c*2^n. Thus, n! = &omega;(2^n)
 
+---
 
+Prove n! = o(n^n)
+```
+n!	= n * (n - 1)	* ...	* 5	* 4	* 3	* 2	* 1
+	= n * (n - 1)	* ...	* 5	* 2	* 3	* 2	* 2
+n^n	= n	* n			* ...	* n	* n	* n	* n	* n
+```
+As every element in n! is greater then every element in n^n (except one), n! ALWAYS grows slower then c*n^n.
 
