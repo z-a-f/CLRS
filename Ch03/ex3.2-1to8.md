@@ -31,4 +31,4 @@ a^al 	= a^(log(c, a) / log(b, a))
 Thus, the equation holds...
 
 ## 3.2-3
-lg(n!) = &Theta;(nlg(n))
+lg(n!) = &Theta;(n*lg(n))
