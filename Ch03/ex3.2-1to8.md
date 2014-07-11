@@ -37,5 +37,5 @@ lg(n!)	= lg(n*(n-1)*(n-2)*...*2*1)
 		= lg(n) + lg(n-1) + lg(n-2) + ... + lg(2) + lg(1)	// n elements
 ```
 Thus, lg(n!) = &Theta;(n*lg(n))
-
+---
 Prove n! = &omega;(2^n)
