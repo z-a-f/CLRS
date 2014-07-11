@@ -32,5 +32,5 @@ small-\omega: c*g(n) < f(n)
 The intersection of the two will therefore be an empty set
 
 ## 3.1-8
-$\Omega$(g(n,m)) = {f(n, m): there exist positive c, n0, m0 such that 0 <= g(n, m) <= f(n, m)}
+&Omega;(g(n,m)) = {f(n, m): there exist positive c, n0, m0 such that 0 <= g(n, m) <= f(n, m)}
 \Theta(g(n,m)) = {f(n, m): there exist positive c, n0, m0 such that 0 <= g(n, m) <= f(n, m)}
