@@ -20,3 +20,8 @@ Thus, f(g(n)) is a monotonically increasing function <br>
 3. same logic... too lazy to write it
 
 ## 3.2-2
+```
+al = log(c, b) = log(c, a) / log(b, a)
+a^al 	= a^(log(c, a) / log(b, a))
+		= (a^log(c, a))^-log(b, a)
+```
