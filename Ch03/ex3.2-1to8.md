@@ -6,9 +6,9 @@ f(n) and g(n) are monotonically increasing functions <br>
 h(n) = f(n) + g(n)
 ```
 
-	if (m &le; n) then <br>
-	f(m) &le; f(n) <br>
-	g(m) &le; g(n)
+if (m &le; n) then <br>
+f(m) &le; f(n) <br>
+g(m) &le; g(n)
 
 Adding both sides of the inequalities: <br>
 f(m) + g(m) &le; f(n) + g(n) <br>
@@ -17,4 +17,6 @@ f(m) + g(m) &le; f(n) + g(n) <br>
 Assume ```k = g(m)``` and ```l = g(n)```.
 if f(n) is a monotonically increasing function, k &le; l means f(k) &le; f(l) <br>
 Thus, f(g(n)) is a monotonically increasing function <br>
-3. test
+3. same logic... too lazy to write it
+
+## 3.2-2
