@@ -1,7 +1,10 @@
+
 ## 3.1-1
 Given h(n) = max(f(n), g(n)) it is obvious that the higher order component of h(n) will be the same as the highest component of f(n)+g(n), which means O(h(n)) = O(f(n) + g(n)) => the worst case running time.
-The best case running time for h(n) would be the best case running time of either f(n) or h(n), depending which is bigger => h(n) = \Omega(f(n) + g(n)).
-Thus, h(n) = \Theta(f(n)+g(n))
+
+The best case running time for h(n) would be the best case running time of either f(n) or h(n), depending which is bigger => h(n) = &Omega;(f(n) + g(n)).
+
+Thus, h(n) = &Theta;(f(n)+g(n))
 
 ## 3.1-2
 If b > 0:
@@ -32,5 +35,5 @@ small-\omega: c*g(n) < f(n)
 The intersection of the two will therefore be an empty set
 
 ## 3.1-8
-&Omega;(g(n,m)) = {f(n, m): there exist positive c, n0, m0 such that 0 <= g(n, m) <= f(n, m)}
-\Theta(g(n,m)) = {f(n, m): there exist positive c, n0, m0 such that 0 <= g(n, m) <= f(n, m)}
+&Omega;(g(n,m)) = {f(n, m): there exist positive c, n0, m0 such that 0 &le; g(n, m) &le; f(n, m)}
+&Theta;(g(n,m)) = {f(n, m): there exist positive c, n0, m0 such that 0 &le; g(n, m) &le; f(n, m)}
