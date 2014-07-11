@@ -31,4 +31,9 @@ a^al 	= a^(log(c, a) / log(b, a))
 Thus, the equation holds...
 
 ## 3.2-3
-lg(n!) = &Theta;(n*lg(n))
+Prove lg(n!) = &Theta;(n*lg(n)):
+```
+lg(n!)	= lg(n*(n-1)*(n-2)*...*2*1) 
+		= lg(n) + lg(n-1) + lg(n-2) + ... + lg(2) + lg(1)	// n elements
+```
+Thus, lg(n!) = &Theta;(n*lg(n))
