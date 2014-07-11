@@ -42,6 +42,6 @@ small-&omega;: c*g(n) < f(n)
 The intersection of the two will therefore be an empty set
 
 ## 3.1-8
-&Omega;(g(n,m)) = {f(n, m): there exist positive c, n0, m0 such that 0 &le; c*g(n, m) &le; f(n, m)}
+&Omega;(g(n,m)) = {f(n, m): there exist positive c, n0, m0 such that 0 &le; c*g(n, m) &le; f(n, m)} for {n &gt; n0, m &gt; m0}
 
-&Theta;(g(n,m)) = {f(n, m): there exist positive c, n0, m0 such that c1*g(n, m) &le; f(n, m) &le; c2*g(n, m)}
+&Theta;(g(n,m)) = {f(n, m): there exist positive c1, c2, n0, m0 such that c1*g(n, m) &le; f(n, m) &le; c2*g(n, m)} for {n &gt; n0, m &gt; m0}
