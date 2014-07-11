@@ -6,9 +6,9 @@ f(n) and g(n) are monotonically increasing functions
 h(n) = f(n) + g(n)
 ```
 
-if ```(m &le; n)``` then
-```
-f(m) &le; f(n)
+if (m &le; n) then
+<br>
+f(m) &le; f(n) <br>
 g(m) &le; g(n)
-```
+
 1. test
