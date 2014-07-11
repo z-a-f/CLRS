@@ -37,5 +37,14 @@ lg(n!)	= lg(n*(n-1)*(n-2)*...*2*1)
 		= lg(n) + lg(n-1) + lg(n-2) + ... + lg(2) + lg(1)	// n elements
 ```
 Thus, lg(n!) = &Theta;(n*lg(n))
----
+
 Prove n! = &omega;(2^n)
+```
+n!	= n * (n - 1)	* ...	* 5	* 4	* 3	* 2	* 1
+	= n * (n - 1)	* ...	* 5	* 2	* 3	* 2	* 2
+2^n	= 2 * 2 		* ...	* 2	* 2	* 2	* 2 * 2
+```
+As every element in n! is greater then every element in 2^n (except two), n! always grows faster then c*2^n. Thus, n! = &omega;(2^n)
+
+
+
