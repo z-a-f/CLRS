@@ -25,4 +25,6 @@ al 		= log(c, b)
 		= log(c, a) / log(b, a)
 a^al 	= a^(log(c, a) / log(b, a))
 		= (a^log(c, a))^-log(b, a)
+		= c^-log(b, a)
+		= c^log(a, b)
 ```
