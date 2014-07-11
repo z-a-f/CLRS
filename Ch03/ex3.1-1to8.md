@@ -36,10 +36,12 @@ which is the definition of the &Theta; notation
 
 ## 3.1-7
 small-o: f(n) < c*g(n)
+
 small-&omega;: c*g(n) < f(n)
 
 The intersection of the two will therefore be an empty set
 
 ## 3.1-8
 &Omega;(g(n,m)) = {f(n, m): there exist positive c, n0, m0 such that 0 &le; g(n, m) &le; f(n, m)}
+
 &Theta;(g(n,m)) = {f(n, m): there exist positive c, n0, m0 such that 0 &le; g(n, m) &le; f(n, m)}
