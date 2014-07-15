@@ -73,7 +73,7 @@ void matrixPrint (MATRIX matrix, int N) {	// N is the edge of a square matrix
 }
 
 // Matrix multiplication:
-MATRIX squareMatrixMultiply (MATRIX A, MATRIX B, int N) {
+MATRIX squareMatrixMultiply (MATRIX A, MATRIX Bint N) {
 	/*** BEGIN ALGORITHM 
 	n = A.rows
 	let C be a new nxn matrix
@@ -96,3 +96,20 @@ MATRIX squareMatrixMultiply (MATRIX A, MATRIX B, int N) {
 	}
 	return C;
 }
+
+// Recursive matrix multiplication:
+/*** BEGIN ALGORITHM
+SQUARE-MATRIX-MULTIPLY-RECURSIVE(A, B)
+	n = A.rows
+	let C be a new nxn matrix
+	if n == 1
+		c_11 = a_11 * b_11
+	else
+		partition A, B, and C into quadrants
+		C_11 = SQUARE-MATRIX-MULTIPLY-RECURSIVE(A_11, B_11) + SQUARE-MATRIX-MULTIPLY-RECURSIVE(A_12, B_21)
+		C_12 = SQUARE-MATRIX-MULTIPLY-RECURSIVE(A_11, B_12) + SQUARE-MATRIX-MULTIPLY-RECURSIVE(A_12, B_22)
+		C_21 = SQUARE-MATRIX-MULTIPLY-RECURSIVE(A_21, B_11) + SQUARE-MATRIX-MULTIPLY-RECURSIVE(A_22, B_21)
+		C_22 = SQUARE-MATRIX-MULTIPLY-RECURSIVE(A_21, B_12) + SQUARE-MATRIX-MULTIPLY-RECURSIVE(A_22, B_22)
+	merge C quadrants
+	return C
+END ALGORITHM ***/
