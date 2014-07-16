@@ -2,7 +2,6 @@
 #include <ctime> 
 #include <cstdlib>
 
-
 using namespace std;
 
 int main () {
@@ -26,6 +25,7 @@ int main () {
 			ones++;
 	} while (k--);
 	
+	cout << "Before bias removal:\t";
 	cout << "p: " << (double)p/1000.0 << " zeros: " << zeros/K << " ones: " << ones/K << endl;
 	
 	// After removing the bias (alternate)
@@ -50,5 +50,7 @@ int main () {
 				zeros++;
 		}
 	} while (k--);
+	
+	cout << "After bias removal:\t";
 	cout << "p: " << (double)p/1000.0 << " zeros: " << zeros/K << " ones: " << ones/K << endl;
 }	
