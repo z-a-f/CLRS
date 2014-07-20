@@ -15,14 +15,14 @@ void heapIncreaseKeyPrime (vector<int> *A, int i, int key) {
 }
 
 void maxHeapInsertPrime(vector<int> *A, int key, int *heapSize) {
-	// A->at(heapSize) = INT_MIN;		// Requires <climits> or <limits.h>
 	*heapSize = *heapSize+1;
-	A->push_back(INT_MIN);
+	A->at(*heapSize) = INT_MIN;		// Requires <climits> or <limits.h>
+	// A->push_back(INT_MIN);
 	heapIncreaseKeyPrime(A, *heapSize, key);
 }
 
 void buildMaxHeapPrime(vector<int> *A) {
-	int heapSize = 1;
+	int heapSize = 0;
 	int len = A->size();
 	for (int i = 1; i < len; i++) {
 		maxHeapInsertPrime (A, A->at(i), &heapSize);
@@ -36,15 +36,15 @@ int main () {
 	B = A;
 	
 	
-	cout << "SOLUTION A):" << endl;
-	cout << "Original vector:" << endl;
+	cout << "SOLUTION A:" << endl;
+	cout << "\tOriginal vector:\n\t";
 	printVector(A);
 	
-	cout << "buildMaxHeap:" << endl;
+	cout << "\tbuildMaxHeap:\n\t";
 	buildMaxHeap(&A);
 	printVector(A);
 	
-	cout << "buildMaxHeapPrime:" << endl;
+	cout << "\tbuildMaxHeapPrime:\n\t";
 	buildMaxHeapPrime(&B);
 	printVector(B);
 }
