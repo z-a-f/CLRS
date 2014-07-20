@@ -1,6 +1,8 @@
 #ifndef __HEAP_SORT__
 #define __HEAP_SORT__
 
+#include "../support/myFunctions.hpp"
+
 int parent(int i) {
   return (i - 1) >> 1;	// floor((i-1)/2)
 }   
@@ -102,12 +104,19 @@ int heapExtractMax(vector<int> A) {
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // For p6-1
-heapIncreaseKey (vector<int> *A, int i, int key) {
+void heapIncreaseKey (vector<int> *A, int i, int key) {
 	assert(key < A->at(i));
+	A->at(i) = key;
+	while (i > 0 && A->at(parent(i)) < A->at(i)) {
+		swap (A->at(i), A->at(parent(i)));
+		i = parent(i);
+	}
 }
 
-maxHeapInsert(vector<int> A, int key) {
-	
+void maxHeapInsert(vector<int> *A, int key, int heapSize) {
+	heapSize++;
+	A->at(heapSize) = INT_MIN;		// Requires <climits> or <limits.h>
+	heapIncreaseKey(A, heapSize, key);
 }
 
 
