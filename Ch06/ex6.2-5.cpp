@@ -1,6 +1,4 @@
-#include <cmath>
-#include <iostream>
-#include <vector>
+#include "../support/myincludes.hpp"
 
 using namespace std;
 

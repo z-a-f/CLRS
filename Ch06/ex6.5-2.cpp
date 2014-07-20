@@ -11,8 +11,7 @@ int main() {
 	vector<int> A;
 	A.insert(A.begin(), ar, ar + 12);
 	
-	for (int i = 0; i < 12; i++) {
-		cout << i << ": " << heapExtractMax(&A) << endl;
-		printVector(A);
-	}
+	printVector(A);
+	maxHeapInsert(&A, 10);
+	printVector(A);
 }

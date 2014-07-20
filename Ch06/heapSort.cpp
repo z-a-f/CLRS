@@ -1,6 +1,5 @@
-#include <cmath>
-#include <iostream>
-#include <vector>
+
+#include "../support/myincludes.hpp"
 
 using namespace std;
 
@@ -17,5 +16,8 @@ int main() {
   // buildMaxHeap(&A);
   // vectorPrint(A);
   heapSort(&A);
+  vectorPrint(A);
+  
+  heapSortReverse(&A);
   vectorPrint(A);
 }
