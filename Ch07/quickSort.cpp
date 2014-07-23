@@ -1,22 +1,24 @@
-#include <cmath>
-#include <iostream>
-#include <vector>
+#include "../support/myIncludes.hpp"
 
 using namespace std;
 
-void printVector (vector<int> A) {
-  for (vector<int>::iterator it = A.begin(); it != A.end(); ++it)
-    cout << *it << ' ';
-  cout << endl;
-}
+#include "../support/myFunctions.hpp"
+// #include "./quickSort.hpp"
 
-void swap(int *a, int *b) {
-  int temp = *a;
-  *a = *b;
-  *b = temp;
-}
+
 
 int partition(vector<int> *A, int p, int r) {
+	/* Pseudo:
+	PARTITION(A, p, r)
+		x = A[r]
+		i = p - 1
+		for j = p to r - 1
+			if A[j] <= x
+				i = i + 1
+				swap A[i] and A[j]
+		swap A[i+1] and A[r]
+		return i + 1
+	*/
     int x = A->at(r);
     int i = p - 1;
     for (int j = p; j <= r-1; j++) {
@@ -30,6 +32,13 @@ int partition(vector<int> *A, int p, int r) {
 }
 
 void quickSort(vector<int> *A, int p, int r) {
+	/* Pseudo:
+	QUICKSORT (A, p, r)
+		if p < r
+			q = PARTITION(A, p, r)
+			QUICKSORT(A, p, q - 1)
+			QUICKSORT(A, q + 1, r)
+	*/
     int q;
     if (p < r) {
         q = partition (A, p, r);
