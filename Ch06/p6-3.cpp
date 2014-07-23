@@ -64,6 +64,17 @@ void buildMaxHeap_tableau(vector<int> *A, int x, int y) {
   }
 }
 
+bool isInTableau(vector<int> A, int val) {
+	int len = A.size();
+	for (int i = 0; i < len && A.at(i) != INT_MAX; i++) {
+		if (A.at(i) == val)
+			return true;
+	}
+	return false;
+}
+
+////////////////////////////////////////////////////////////////////////
+
 void printTableau(vector<int> A, int x, int y) {
 	int first = 0;
 	int current = first;
@@ -93,5 +104,6 @@ int main() {
 	buildMaxHeap_tableau(&A, 4, 4);
 	printVector(A);
 	printTableau(A, 4, 4);
+	cout << isInTableau(A, 23) << endl;
 		
 }
