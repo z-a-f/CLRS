@@ -4,8 +4,14 @@
 #define	printVector(A)	vectorPrint(A)
 
 void vectorPrint (vector<int> A) {
-  for (vector<int>::iterator it = A.begin(); it != A.end(); ++it)
-    cout << *it << ' ';
+	for (vector<int>::iterator it = A.begin(); it != A.end(); ++it) {
+  		if (*it == INT_MAX)
+  			cout << "inf ";
+  		else if (*it == INT_MIN)
+  			cout << "-inf ";
+  		else
+    		cout << *it << ' ';
+	}
   cout << endl;
 }
 
