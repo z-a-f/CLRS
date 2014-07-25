@@ -38,7 +38,7 @@ public:
     }
   }
   
-  int pop () {
+  T pop () {
     if (stackEmpty()) {
       cout << "(UNDERFLOW) Stack is empty - Cannot POP!\n";
       return INT_MIN;
