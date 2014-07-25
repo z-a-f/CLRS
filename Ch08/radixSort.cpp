@@ -7,11 +7,11 @@ using namespace std;
 
 int main() {
   // int ar[15] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1, 2, 3, 4, 5};
-  int ar[11] = {6, 0, 2, 0, 1, 3, 4, 6, 1, 3, 2};
+  int ar[11] = {61, 20, 12, 0, 11, 35, 49, 96, 12, 39, 27};
   vector<int> A;
-  A.insert(A.begin(), ar, ar+11);
+  A.insert(A.begin(), ar, ar + 11);
 
   printVector(A);
-  countingSort(&A, 10);
+  radixSort(&A, 4);
   printVector(A);
 }
