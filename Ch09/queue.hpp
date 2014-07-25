@@ -20,13 +20,17 @@ public:
   ~queue() {
     delete [] Q;
   }
+  
+  int len() {
+    return abs(tail - head);
+  }
 
   bool queueEmpty() {
     return (head == tail);
   }
 
   bool queueFull() {
-    return (head == tail+1);
+    return (len() == size);
   }
   
   void enqueue(T x) {
@@ -34,11 +38,7 @@ public:
       cout << "(OVERFLOW) Queue is full - Cannot ENQUEUE!\n";
     } else {
       Q[tail] = x;
-      if (tail == size-1){
-	tail = 0;
-      } else {
-	tail++;
-      }
+      tail = (tail+1) % size;
     }
   }
   
@@ -48,13 +48,19 @@ public:
       return INT_MIN;
     } else {
       T x = Q[head];
-      if (head == size-1) {
-	head = 1;
-      } else {
-	head++;
-      }
+      head = (head+1) % size;
       return x;
     }
+  }
+
+  void print() {
+    cout << "head: " << head;
+    cout << " tail: " << tail;
+    cout << " Q: ";
+    for (int i = 0; i < size; i++) {
+      cout << Q[i] << ' ';
+    }
+    cout << endl;
   }
 
 };
