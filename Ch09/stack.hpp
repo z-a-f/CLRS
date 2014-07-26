@@ -41,7 +41,7 @@ public:
   T pop () {
     if (stackEmpty()) {
       cout << "(UNDERFLOW) Stack is empty - Cannot POP!\n";
-      return INT_MIN;
+      return 0;	// 0 exists in all types
     } else {
       top--;
       return S[top+1];
