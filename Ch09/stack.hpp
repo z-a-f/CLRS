@@ -48,4 +48,14 @@ public:
     }
   }
 
+  void print () {
+    for (int i = 0; i <= top; i++) {
+      cout << S[i] << '\t';
+    }
+    for (int i = top + 1; i < size; i++) {
+      cout << "X\t";
+    }
+    cout << endl;
+  }
+
 };

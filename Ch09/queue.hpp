@@ -50,11 +50,36 @@ public:
   }
 
   void print() {
-    cout << "head: " << head;
-    cout << " tail: " << tail;
-    cout << " Q: ";
-    for (int i = 0; i < size; i++) {
-      cout << Q[i] << ' ';
+    // cout << "head: " << head;
+    // cout << " tail: " << tail;
+    // cout << " Q: ";
+    // If empty:
+    if (empty) {
+      for (int i = 0; i < size; i++)
+	cout << "X\t";
+    }
+    // If full:
+    if (full) {
+      for (int i = 0; i < size; i++)
+	cout << Q[i] << '\t';
+    }
+    // If head < tail
+    if (head < tail) {
+      for (int i = 0; i < head; i++)
+	cout << "X\t";
+      for (int i = head; i < tail; i++)
+	cout << Q[i] << '\t';
+      for (int i = tail; i < size; i++)
+	cout << "X\t";
+    }
+    // If tail < head
+    if (tail < head) {
+      for (int i = 0; i < tail; i++)
+	cout << Q[i] << '\t';
+      for (int i = tail; i < head; i++)
+	cout << "X\t";
+      for (int i = head; i < size; i++)
+	cout << Q[i] << '\t';
     }
     cout << endl;
   }
