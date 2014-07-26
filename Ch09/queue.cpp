@@ -22,4 +22,12 @@ int main() {
   S.print();
   cout << S.dequeue() << endl;
   S.print();
+  cout << S.dequeue() << endl;
+  S.print();
+  S.enqueue(11);
+  S.print();
+  cout << S.dequeue() << endl;
+  cout << S.dequeue() << endl;
+  cout << S.dequeue() << endl;
+  cout << S.dequeue() << endl;
 }

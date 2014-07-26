@@ -5,6 +5,8 @@ private:
   int size;
   int head;
   int tail;
+  bool full;	// Holds information if the queue is filled
+  bool empty;	// Holds information if the queue is empty
   T* Q;
   
 public:
@@ -13,6 +15,8 @@ public:
     size = s;
     head = 0;
     tail = 0;
+    full = 0;
+    empty = 1;
     Q = new T[size];
   }
 
@@ -20,37 +24,29 @@ public:
   ~queue() {
     delete [] Q;
   }
-  
-  int len() {
-    return abs(tail - head);
-  }
 
-  bool queueEmpty() {
-    return (head == tail);
-  }
-
-  bool queueFull() {
-    return (len() == size);
-  }
-  
   void enqueue(T x) {
-    if (queueFull()) {
-      cout << "(OVERFLOW) Queue is full - Cannot ENQUEUE!\n";
+    if (full) {
+      cout << "(OVERFLOW) Cannot ENQUEUE!\n";
     } else {
       Q[tail] = x;
-      tail = (tail+1) % size;
+      tail = (tail + 1) % size;
+      empty = false;	// If we pushed something - we are not empty
+      if (tail == head) full = true;	// tail incremented to full
     }
   }
   
   T dequeue() {
-    if (queueEmpty()) {
-      cout << "(UNDERFLOW) Queue is empty - Cannot DEQUEUE!\n";
-      return INT_MIN;
+    T x = 0;
+    if (empty) {
+      cout << "(UNDERFLOW) Cannot DEQUEUE!\n";
     } else {
-      T x = Q[head];
-      head = (head+1) % size;
-      return x;
+      x = Q[head];
+      head = (head + 1) % size;
+      full = false;
+      if (head == tail) empty = true;
     }
+    return x;
   }
 
   void print() {
