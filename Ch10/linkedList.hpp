@@ -31,6 +31,26 @@ public:
 		this->head = NULL;
 	}
 
+	Node <T> * getHead() {
+		return head;
+	}
+
+	Node <T> * getTail() {
+		// If tail exists, just return it
+		Node <T> *it = new Node<T>;
+		it = head;
+		while(it->next != NULL) {
+			it = it->next;
+		}
+		return it;
+	}
+
+	void setTail(Node<T> *x) {
+		Node<T> * it = new Node<T>;
+		it = getTail();
+		it->next = x;
+	}
+
 	// Search the list for a key:
 	Node<T>* search(T key) {
 		Node <T> *x = new Node<T>;
@@ -46,7 +66,7 @@ public:
 		x->next = head;
 		if (head != NULL) {
 			head->prev = x;
-		}
+		} 
 		head = x;
 		x->prev = NULL;
 	}
@@ -130,4 +150,18 @@ public:
 	}
 };
 
+/////////////////////////////////////////////////////////////////
+// Methods:
+
+template <typename T> 
+lList<T> UNION (lList<T> L1, lList<T> L2) {
+	lList<T> final;
+	final = L1;
+	/* If tail exists:
+		// set the tail of L1 to b equal to the head of L2
+	*/
+	// Find the end of the L1:
+	final.setTail(L2.getHead());
+	return final;
+};
 
