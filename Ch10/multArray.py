@@ -2,7 +2,7 @@
 # Simulating pointer behavior
 
 # THIS IS VERY BAD!!!
-# After several iteration you will run out of memory as every node will have two copies of all the entries!!!
+# After several iterations you will run out of memory as every node will have two copies of all the entries!!!
 
 class Node:
 	def __init__(self, key=None, next=None, prev=None):
