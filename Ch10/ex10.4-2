@@ -1,0 +1,12 @@
+BINARY-TREE-PRINT (T):
+	if T == NULL:
+		return
+		
+	if T.left != NULL:
+		BINARY-TREE-PRINT(T.left)
+
+	print T.key	// We put it here so that if the tree is balanced it will be sorted
+
+	if T.right != NULL:
+		BINARY-TREE-PRINT(T.right)
+
