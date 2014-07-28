@@ -18,13 +18,14 @@ public:
 		this->right = NULL;
 		this->parent = NULL;
 	}
-
+    
 	~binNode() {
-		free(left);
-		free(right);
-		free(parent);
+		if (parent != NULL) free(parent);
+		if (left != NULL) free(left);
+		if (right != NULL) free (right);
+		free(this);
 	}
-
+    
 	T getKey() {
 		return this->key;
 	}
@@ -36,6 +37,7 @@ public:
 template<typename T> class Tree {
 private:
 	binNode <T> *root;
+
 public:
 	Tree() {
 		this->root = NULL;
@@ -46,7 +48,8 @@ public:
 	}
 
 	~Tree() {
-		free(root); // binNodes are freed
+	    // Something is wwrong...
+	    free(root);
 	}
 	
 	void addNode(binNode<T> *&x, binNode<T> * node) { // what's up with the *&???
@@ -102,24 +105,37 @@ public:
 	}
 
 	binNode<T> *treeMinimum(binNode<T> *node) {
-		while (node->left != NULL) {
+    	/*
+    	while (node->left != NULL) {
 			node = node->left;
 		}
 		return node;
+		*/
+		if (node->left != NULL)
+		    return treeMinimum(node->left);
+		else
+		    return node;
 	}
 
 	binNode<T> *treeMinimum() {
+	    
 		if (root != NULL) {
 			return treeMinimum(root);
 		}
 		return root;
-	}
+    }
 
 	binNode<T> *treeMaximum(binNode<T> *node) {
+	    /*
 		while (node->right != NULL) {
 			node = node->right;
 		}
 		return node;
+		*/
+		if (node->right != NULL)
+		    return treeMaximum(node->right);
+		else
+		    return node;
 	}
 
 	binNode<T> *treeMaximum() {
@@ -127,6 +143,28 @@ public:
 			return treeMaximum(root);
 		}
 		return root;
+	}
+	
+	binNode<T> * treeSuccessor(binNode<T> *x) {
+	    if (x == NULL) return x;
+	    if (x->right != NULL) return treeMinimum(x->right);
+	    binNode <T> *y = x->parent;
+	    while (y != NULL && x == y->right) {
+	        x = y;
+	        y = y->parent;
+	    }
+	    return y;
+	}
+	
+	binNode<T> * treePredecessor(binNode<T> *x) {
+	    if (x == NULL) return x;
+	    if (x->left != NULL) return treeMaximum(x->left);
+	    binNode <T> *y = x->parent;
+	    while (y != NULL && x == y->left) {
+	        x = y;
+	        y = y->parent;
+	    }
+	    return y;
 	}
 
 	void printOrdered() {

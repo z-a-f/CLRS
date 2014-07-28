@@ -6,8 +6,8 @@ using namespace std;
 #include "./tree.hpp"
 
 int main() {
-	// Tree<int> T (new binNode<int>(10));
-	Tree<int> T;
+	Tree<int> T (new binNode<int>(10));
+	// Tree<int> T;
 
 	T.addNode(new binNode<int> (11));
 	T.addNode(new binNode<int> (9));
@@ -18,13 +18,20 @@ int main() {
 
 	binNode <int> *find;
 	find = T.iterativeTreeSearch(11);
-	T.printOrdered();
-
-	find = new binNode<int> (30);
-	T.printOrdered();
-
+	cout << find->getKey() << endl; // print 11
+	
 	find = T.treeMaximum();
-	cout << find->getKey() <<endl;
+	cout << find->getKey() << endl; // print 12
+	
+	find = T.treeSearch(10);
+	cout << find->getKey() << endl; // print 10
+	find = T.treeSuccessor(find);
+	cout << find->getKey() << endl; // print 11
+	
+	find = T.treeSearch(10);
+	cout << find->getKey() << endl; // print 10
+	find = T.treePredecessor(find);
+	cout << find->getKey() << endl; // print 9
 
-	free (find);
+    T.printOrdered();
 }
