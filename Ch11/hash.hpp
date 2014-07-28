@@ -34,7 +34,7 @@ int hashLinearProbing (int key, int i, int TABLE_SIZE) {
 int hashQuadraticProbing (int key, int i, int TABLE_SIZE) {
 	const int c1 = 17; // Whatever
 	const int c2 = 19; // Whatever
-	return (hashAuxiliary(key, TABLE_SIZE, 0) + c1*i + c2*i) % TABLE_SIZE;
+	return (hashAuxiliary(key, TABLE_SIZE, 0) + c1*i + c2*i*i) % TABLE_SIZE;
 }
 
 int hashDouble (int key, int i, int TABLE_SIZE) {
