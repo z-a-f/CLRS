@@ -101,6 +101,34 @@ public:
 		return iterativeTreeSearch(this->root, key);
 	}
 
+	binNode<T> *treeMinimum(binNode<T> *node) {
+		while (node->left != NULL) {
+			node = node->left;
+		}
+		return node;
+	}
+
+	binNode<T> *treeMinimum() {
+		if (root != NULL) {
+			return treeMinimum(root);
+		}
+		return root;
+	}
+
+	binNode<T> *treeMaximum(binNode<T> *node) {
+		while (node->right != NULL) {
+			node = node->right;
+		}
+		return node;
+	}
+
+	binNode<T> *treeMaximum() {
+		if (root != NULL) {
+			return treeMaximum(root);
+		}
+		return root;
+	}
+
 	void printOrdered() {
 		inorderTreeWalk(root);
 		cout << endl;

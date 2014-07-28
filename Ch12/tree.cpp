@@ -19,6 +19,12 @@ int main() {
 	binNode <int> *find;
 	find = T.iterativeTreeSearch(11);
 	T.printOrdered();
+
 	find = new binNode<int> (30);
 	T.printOrdered();
+
+	find = T.treeMaximum();
+	cout << find->getKey() <<endl;
+
+	free (find);
 }
