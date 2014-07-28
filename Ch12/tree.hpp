@@ -32,6 +32,7 @@ public:
 	void setKey(T key) {
 		this->key = key;
 	}
+	
 };
 
 template<typename T> class Tree {
@@ -52,6 +53,8 @@ public:
 	    free(root);
 	}
 	
+	/* BEGIN: inserting a new node */
+	// My way:
 	void addNode(binNode<T> *&x, binNode<T> * node) { // what's up with the *&???
 		if (x == NULL) {
 			x = node;
@@ -74,6 +77,27 @@ public:
 	void addNode(binNode<T> * node) {
 		addNode(this->root, node);
 	}
+	
+	// Book way:
+	void treeInsert (binNode <T> *z) { // page 294
+	    binNode <T> * y = NULL;
+	    binNode <T> * x = this->root;
+	    while (x != NULL) {
+	        y = x;
+	        if (z->getKey() < x->getKey())
+	            x = x->left;
+	        else
+	        	x = x->right;	            
+	    }
+	    z->parent = y;
+	    if (y == NULL)
+	    	this->root = z;	// tree was empty
+	    else if (z->getKey() < y->getKey())
+	    	y->left = z;
+	    else
+	    	y->right = z;
+	}
+	/* END: inserting a new node */
 	
 	binNode<T> * treeSearch(binNode<T> * x, T key) {
 		if (x == NULL || key == x->getKey()) {
