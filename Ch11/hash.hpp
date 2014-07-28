@@ -234,6 +234,14 @@ public:
 	bool isDeleted() {
 		return deleted;
 	}
+
+	void hashDelete() {
+		deleted = true;
+	}
+
+	void hashUndelete() {
+		deleted = false;
+	}
 };
 
 template <typename T> 
@@ -263,36 +271,54 @@ public:
  	}
 
  	int hash(int key, int i) {
- 		return hashLinearProbing(key, i, TABLE_SIZE);
+ 		// return hashLinearProbing(key, i, TABLE_SIZE);
+ 		return hashDouble(key, i, TABLE_SIZE);
  	}
  	
- 	int hashInsert(HashEntryOA <T> entry) { // Different from the book, as I want to store the value as well
+ 	HashEntryOA<T> *hashInsert(HashEntryOA <T> *entry) { // Different from the book, as I want to store the value as well
  		int i = 0;
  		while (i != TABLE_SIZE) {
  			int j = hash(entry->getKey(), i);
- 			if (table[j]->isDeleted() || table[j] == NULL) {
+ 			if (table[j] == NULL || table[j]->isDeleted()) {
  				table[j] = entry;
- 				return j;
+ 				table[j]->hashUndelete();
+ 				return table[j];
  			} else {
  				i++;
  			}
  		}
  		cout << "(OVERFLOW) HASHTABLE FULL!\n";
- 		return -1;
+ 		return NULL;
  	}
 
- 	int hashSearch(int key) {
+ 	HashEntryOA <T> *hashSearch(int key) { // Different from the book, as I want to return the hash object
  		int i = 0;
  		int j;
  		do {
  			j = hash(key, i);
  			if (table[j]->isDeleted()) continue;
- 			if (table[j]->getKey() == key) return j;
+ 			if (table[j]->getKey() == key) return table[j];
  			i++;
  		} while (table[j] != NULL && i != TABLE_SIZE);
- 		return -1;
+ 		return NULL;
  	}
 
+ 	void hashDelete(HashEntryOA<T> *entry) {
+ 		// Set the entry as deleted:
+ 		entry->hashDelete();
+ 	}
+
+ 	void print() {
+ 		for (int i = 0; i < TABLE_SIZE; i++) {
+ 			if (table[i] == NULL) {
+ 				cout << "NULL\n";
+ 			} else if (table[i]->isDeleted()) {
+ 				cout << "DEL\n";
+ 			} else {
+ 				cout << '{' << table[i]->getKey() << ',' << table[i]->getValue() << "}\n";
+ 			}
+ 		}
+ 	}
 };
 
 
