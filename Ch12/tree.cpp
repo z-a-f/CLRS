@@ -6,13 +6,16 @@ using namespace std;
 #include "./tree.hpp"
 
 int main() {
-	Tree<int> T (new binNode<int>(10));
-	// Tree<int> T;
-
-	T.addNode(new binNode<int> (11));
-	T.addNode(new binNode<int> (9));
-	T.addNode(new binNode<int> (8));
-	T.addNode(new binNode<int> (12));
+	// Tree<int> T (new binNode<int>(10));
+	Tree<int> T;
+	
+	T.treeInsert(new binNode<int> (10));
+	T.treeInsert(new binNode<int> (11));
+	T.treeInsert(new binNode<int> (9));
+	T.treeInsert(new binNode<int> (8));
+	T.treeInsert(new binNode<int> (12));
+    
+    cout << "The root is: " << T.getRoot()->getKey() << endl;
     
     cout << "After creating the tree and adding base nodes:\n";
 	T.printOrdered();
@@ -67,4 +70,14 @@ int main() {
     T.printOrdered();
     
 	// delete find;
+	cout << "After deleting key=10:\n";
+	find = T.treeSearch(10);
+	T.treeDelete(find);
+	T.printOrdered();
+	
+    cout << "The root is: " << T.getRoot()->getKey() << endl;
 }
+
+
+
+

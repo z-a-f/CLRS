@@ -50,8 +50,12 @@ public:
 	    if (root != NULL) delete root;
 	}
 	
+	binNode<T> * getRoot() {
+		return this->root;
+	}
+	
 	/* BEGIN: inserting a new node */
-	// My way:
+	// My way: -> NOTE: This is not really working (something is wrong woth the parents)
 	void addNode(binNode<T> *&x, binNode<T> * node) { // what's up with the *&???
 		if (x == NULL) {
 			x = node;
@@ -132,6 +136,9 @@ public:
 		}
 		return node;
 		*/
+		if (node == NULL)
+			return node;
+
 		if (node->left != NULL)
 		    return treeMinimum(node->left);
 		else
@@ -139,11 +146,7 @@ public:
 	}
 
 	binNode<T> *treeMinimum() {
-	    
-		if (root != NULL) {
-			return treeMinimum(root);
-		}
-		return root;
+		return treeMinimum(root);
     }
 
 	binNode<T> *treeMaximum(binNode<T> *node) {
@@ -153,6 +156,9 @@ public:
 		}
 		return node;
 		*/
+		if (node == NULL)
+			return node;
+			
 		if (node->right != NULL)
 		    return treeMaximum(node->right);
 		else
@@ -160,10 +166,7 @@ public:
 	}
 
 	binNode<T> *treeMaximum() {
-		if (root != NULL) {
-			return treeMaximum(root);
-		}
-		return root;
+		return treeMaximum(root);
 	}
 	
 	binNode<T> * treeSuccessor(binNode<T> *x) {
@@ -187,7 +190,50 @@ public:
 	    }
 	    return y;
 	}
-
+	
+	void transplant(binNode<T> * u, binNode<T> * v){ // page 296
+		if (u->parent == NULL) {	// This is the root
+			this->root = v;
+		} else if (u == u->parent->left) { // left branch
+			u->parent->left = v;
+		} else {	// right brach
+			u->parent->right = v;
+		}
+		if (v != NULL) {
+			v->parent = u->parent;
+		}
+	}
+	
+	void treeDelete(binNode<T> * z) { // page 298
+		binNode<T> * y;
+		if (z == NULL) { // node z doesn't exist
+			cout << "Cannot delete node!\n";
+			return;	
+		}
+		if (z->left == NULL) {
+			transplant(z, z->right);
+		} else if (z->right == NULL) {
+			transplant(z, z->left);
+		} else {
+			y = treeMinimum(z->right);
+			// cout << y->getKey() << endl;
+			if (y->parent != z) {
+				transplant(y, y->right);
+				y->right = z->right;
+				y->right->parent = y;
+			}
+			transplant (z, y);
+			y->left = z->left;
+			y->left->parent = y;
+			// Do we need to make sure z is not pointing back?
+		}
+		// Free - get rid of the pointers?
+		z->parent = NULL;
+		z->left = NULL;
+		z->right = NULL;
+		delete z;
+	}
+	
 	void printOrdered() {
 		inorderTreeWalk(root);
 		cout << endl;
