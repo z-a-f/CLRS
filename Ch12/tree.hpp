@@ -20,10 +20,8 @@ public:
 	}
     
 	~binNode() {
-		if (parent != NULL) free(parent);
-		if (left != NULL) free(left);
-		if (right != NULL) free (right);
-		free(this);
+		if (left != NULL) delete left;
+		if (right != NULL) delete right;
 	}
     
 	T getKey() {
@@ -49,8 +47,7 @@ public:
 	}
 
 	~Tree() {
-	    // Something is wwrong...
-	    free(root);
+	    if (root != NULL) delete root;
 	}
 	
 	/* BEGIN: inserting a new node */

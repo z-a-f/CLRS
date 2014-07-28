@@ -32,16 +32,32 @@ int main() {
 	else
 	    cout << "NULL\n";
 	
+	cout << "After finding key=10 and its successor:\n";
 	find = T.treeSearch(10);
-	cout << find->getKey() << endl; // print 10
+	if (find != NULL)
+	    cout << find->getKey() << endl; // print 10
+	else
+		cout << "NULL\n";
 	find = T.treeSuccessor(find);
-	cout << find->getKey() << endl; // print 11
+	if (find != NULL)
+	    cout << find->getKey() << endl; // print 11
+	else
+		cout << "NULL\n";
 	
+	
+	cout << "After finding key=10 and its predecessor:\n";
 	find = T.treeSearch(10);
-	cout << find->getKey() << endl; // print 10
+	if (find != NULL)
+	    cout << find->getKey() << endl; // print 10
+	else
+		cout << "NULL\n";
 	find = T.treePredecessor(find);
-	cout << find->getKey() << endl; // print 9
+	if (find != NULL)
+	    cout << find->getKey() << endl; // print 9
+	else
+		cout << "NULL\n";
 
+	cout << "Check if the tree was modofied:\n";
     T.printOrdered();
     
     // Check the  treeInsert:
@@ -49,4 +65,6 @@ int main() {
     T.printOrdered();
     T.treeInsert(new binNode <int>(5));
     T.printOrdered();
+    
+	// delete find;
 }
