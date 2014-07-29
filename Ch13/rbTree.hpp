@@ -145,7 +145,7 @@ public:
 		insertFixup(z);
 	}
 	
-	void insertFixup(Node <T> * z) {
+	void insertFixup(Node <T> * z) {	// page 316
 		Node <T> * y;
 		while (z->parent->getColor() == _RED_) {
 			if (z->parent == z->parent->parent->left) {
@@ -184,8 +184,134 @@ public:
 		}
 		this->root->setColor(_BLACK_);
 	}
-			
 	
+	void transplant(Node<T> * u, Node<T> * v) {	// page 323
+		if (u->parent == this->NIL) {
+			this->root = v;
+		} else if (u == u->parent->left) {
+			u->parent->left = v;
+		} else {
+			u->parent->right = v;
+		}
+		v->parent = u->parent;
+	}
+
+	void deleteNode (Node<T> * z) { // page 324
+		Node <T> * y = z;
+		Node <T> * x;
+		bool yOriginalColor = y->getColor();
+		if (z->left == this->NIL) {
+			x = z->right;
+			transplant(z, z->right);
+		} else if (z->right == this->NIL) {
+			x = z->left;
+			transplant(z, z->left);
+		} else {
+			y = treeMinimum(z->right);
+			yOriginalColor = y->getColor();
+			x = y->right;
+			if (y->parent == z) {
+				x->parent = y;
+			} else {
+				transplant(y, y->right);
+				y->right = z->right;
+				y->right->parent = y;
+			}
+			transplant(z, y);
+			y->left = z->left;
+			y->left->parent = y;
+			y->setColor(z->getColor());
+		}
+		if (yOriginalColor == _BLACK_) {
+			deleteFixup(x);
+		}
+	}
+
+	void deleteFixup(Node <T> * x) {	// page 326
+		Node <T> * w;
+		while (x != this->root && x->getColor() == _BLACK_) {
+			if (x == x->parent->left) {
+				w = x->parent->right;
+				if (w->getColor() == _RED_) {
+					w->setColor(_BLACK_);
+					x->parent->setColor(_RED_);
+					leftRotate(x->parent);
+					w = x->parent->right;
+				}
+				if (w->left->getColor() == _BLACK_ && w->right->getColor() == _BLACK_) {
+					w->setColor(_RED_);
+					x = x->parent;
+				} else {
+					if (w->right->getColor() == _BLACK_) {
+						w->left->setColor(_BLACK_);
+						w->setColor(_RED_);
+						rightRotate(w);
+						w = x->parent->right;
+					}
+					w->setColor(x->parent->getColor());
+					x->parent->setColor(_BLACK_);
+					w->right->setColor(_BLACK_);
+					leftRotate(x->parent);
+					x = this->root;
+				}
+			} else {
+				w = x->parent->left;
+				if (w->getColor() == _RED_) {
+					w->setColor(_BLACK_);
+					x->parent->setColor(_RED_);
+					rightRotate(x->parent);
+					w = x->parent->left;
+				}
+				if (w->right->getColor() == _BLACK_ && w->left->getColor() == _BLACK_) {
+					w->setColor(_RED_);
+					x = x->parent;
+				} else {
+					if (w->left->getColor() == _BLACK_) {
+						w->right->setColor(_BLACK_);
+						w->setColor(_RED_);
+						leftRotate(w);
+						w = x->parent->left;
+					}
+					w->setColor(x->parent->getColor());
+					x->parent->setColor(_BLACK_);
+					w->left->setColor(_BLACK_);
+					rightRotate(x->parent);
+					x = this->root;
+				}
+			}
+		}
+		x->setColor(_BLACK_);
+	}
+
+	Node <T> * treeMinimum(Node <T> * node) {
+		if (node->left != this->NIL)
+			return treeMinimum(node->left);
+		return node;
+	}
+
+	Node <T> * treeMaximum(Node <T> * node) {
+		if (node->right != this->NIL)
+			return treeMaximum(node->right);
+		return node;
+	}
+
+	Node <T> * search(T key) {
+		Node <T> * p = this->root;
+		while (p != NIL) {
+			T k = p->getKey();
+			if (k == key) {
+				return p;
+			} else if (key < k) {
+				p = p->left;
+				continue;
+			} else {
+				p = p->right;
+				continue;
+			}
+		}
+		return p;
+	}
+
 	void print() {
 		cout << "\nROOT/COLOR: " << this->root->getKey() << '/' << (this->root->getColor() ? "RED" : "BLACK")  << endl;
 		cout << "NIL/COLOR: " << this->NIL->getKey() << '/' << (this->NIL->getColor() ? "RED" : "BLACK")  << endl;

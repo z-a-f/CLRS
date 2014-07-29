@@ -40,5 +40,13 @@ int main() {
 
 	tree.insert(new Node <int> (28));
 	tree.print();
-	
+
+	Node<int> *node = tree.search(19);
+	cout << node->getKey() <<endl;
+	tree.print();
+
+	tree.deleteNode(node);
+	tree.print();
+
+	delete node;
 }
