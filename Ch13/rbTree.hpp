@@ -13,12 +13,14 @@ public:
 	
 	Node() {
 		this->color = _BLACK_;
+		this->key = 0;
 		this->left = NULL;
 		this->right = NULL;
 		this->parent = NULL;
 	}
 	Node(Node <T> * NIL) {
 		this->color = _BLACK_;
+		this->key = 0;
 		this->left = NIL;
 		this->right = NIL;
 		this->parent = NIL;
@@ -32,8 +34,10 @@ public:
 	}
 	
 	~Node() {
-		delete this->left;
-		delete this->right;
+		/*
+		delete left;
+		delete right;		
+		*/
 	}
 	
 	T getKey() {
@@ -52,29 +56,31 @@ class rbTree {
 private:
 	Node<T> * root;
 	Node<T> * NIL; // sentinel
+	void treeDelete(Node <T> * node) {
+		// Use postorder tree walk to delete the entries
+		if (node != NULL && node != NIL) {
+			treeDelete(node->left);
+			treeDelete(node->right);
+			delete node;
+		}
+	}
 public:
 	rbTree() {
-		this->root = new Node<T>;
+		// this->root = new Node<T>;
 		this->NIL = new Node<T>;
 		
 		/* Set the NIL to point to itself */
 		this->NIL->parent = this->NIL;
 		this->NIL->left = this->NIL;
 		this->NIL->right = this->NIL;
-		
+
 		this->root = this->NIL;
 	}
 	
 	~rbTree() {
-		this->root->parent = NULL;
-		this->root->left = NULL;
-		this->root->right = NULL;
-		this->NIL->parent = NULL;
-		this->NIL->left = NULL;
-		this->NIL->right = NULL;
-
-		delete root;
-		delete NIL;
+		// delete this->root->parent;
+		treeDelete(this->root);
+		delete this->NIL;
 	}
 	
 	void leftRotate(Node<T> *x) {	// page 313
@@ -114,16 +120,6 @@ public:
 	}
 	
 	void insert (Node<T> * z) {  // page 315
-		/*
-		if (this->root = this->NIL) {	// The tree is empty
-			z->left = this->NIL;
-			z->right = this->NIL;
-			z->parent = this->NIL;
-			z->setColor(_BLACK_);
-			this->root = z;
-			return;
-		}
-		*/
 		// Assume all keys are distinct!
 		Node <T> * y = this->NIL;
 		Node <T> * x = this->root;
@@ -205,16 +201,3 @@ public:
 	}
 	
 };
-
-
-
-
-
-
-
-
-
-
-
-
-

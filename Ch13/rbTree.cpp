@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
 	rbTree<int> tree;
-	
+
 	tree.insert(new Node <int> (9));
 	tree.print();
 	
@@ -40,5 +40,5 @@ int main() {
 
 	tree.insert(new Node <int> (28));
 	tree.print();
-		
+	
 }
