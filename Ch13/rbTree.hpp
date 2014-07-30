@@ -1,3 +1,7 @@
+#ifndef RBTREE_H_
+#define RBTREE_H_
+
+
 #define _RED_	true
 #define _BLACK_	false
 
@@ -43,6 +47,9 @@ public:
 	T getKey() {
 		return this->key;
 	}
+	void setKey(T key) {
+		this->key = key;
+	}
 	bool getColor() {
 		return this->color;
 	}
@@ -53,7 +60,7 @@ public:
 
 template <typename T>
 class rbTree {
-private:
+protected:
 	Node<T> * root;
 	Node<T> * NIL; // sentinel
 	void treeDelete(Node <T> * node) {
@@ -76,11 +83,35 @@ public:
 
 		this->root = this->NIL;
 	}
+	rbTree(Node<T> * node) {
+		this->root = node;
+		this->root->parent = this->NIL;
+		fixTree(this->root);
+	}
 	
 	~rbTree() {
 		// delete this->root->parent;
 		treeDelete(this->root);
 		delete this->NIL;
+	}
+
+	void fixTree(Node<T> * node) {
+		if (node->left == this->NIL) {
+			return;
+		} else if (node->left == NULL) {
+			node->left = this->NIL;
+			return;
+		} else {
+			fixTree(node->left);
+		}
+		if (node->right == this->NIL) {
+			return;
+		} else if (node->right == NULL) {
+			node->right = this->NIL;
+			return;
+		} else {
+			fixTree(node->right);
+		}
 	}
 	
 	void leftRotate(Node<T> *x) {	// page 313
@@ -327,3 +358,6 @@ public:
 	}
 	
 };
+
+
+#endif

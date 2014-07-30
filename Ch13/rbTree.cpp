@@ -8,7 +8,7 @@ using namespace std;
 int main() {
 	rbTree<int> tree;
 
-	tree.insert(new Node <int> (9));
+	tree.insert(new Node <int> (pow(3, 2)));
 	tree.print();
 	
 	tree.insert(new Node <int> (19));
