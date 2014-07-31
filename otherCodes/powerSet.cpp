@@ -5,6 +5,14 @@
 
 using namespace std;
 
+/* Approach:
+ *	Create a 64-bit iterator "it". "it" will have a form: 0000...0011...1111, where the position of "1"
+ *	represents the position in the array (set). Another variable "itShift" represents a shifting iterator
+ *	where for every "it", "itShift" will iterate through the bits, and show ar[i] if the i-th bit is "1".
+ *	After that "it" is decremented, and the operation repeats:
+ *
+ *	
+ */
 
 int main() {
 	cout << "Please, enter N: ";
