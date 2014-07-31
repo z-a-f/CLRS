@@ -10,8 +10,21 @@ using namespace std;
  *	represents the position in the array (set). Another variable "itShift" represents a shifting iterator
  *	where for every "it", "itShift" will iterate through the bits, and show ar[i] if the i-th bit is "1".
  *	After that "it" is decremented, and the operation repeats:
- *
  *	
+ *	POWERSET(A, N):		// A is an array of N elements (initial set)
+ *		B -> new empty set array
+ *		ar -> new empty array
+ *		it = (it << N) - 1
+ *		i = 0
+ *		while (it != 0)
+ *			ar -> empty array
+ *			for (itShift = it; itShift > 0; itShift = itShift >> 1)
+ *				if (itShift mod 2 != 0)
+ *					add A[i] to ar
+ *				i = i + 1
+ *			push ar to B
+ *			it = it - 1
+ *		return B
  */
 
 int main() {
