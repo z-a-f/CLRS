@@ -15,8 +15,8 @@ using namespace std;
  *		B -> new empty set array
  *		ar -> new empty array
  *		it = (it << N) - 1
- *		i = 0
  *		while (it != 0)
+ *			i = 0
  *			ar -> empty array
  *			for (itShift = it; itShift > 0; itShift = itShift >> 1)
  *				if (itShift mod 2 != 0)
