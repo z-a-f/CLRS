@@ -1,4 +1,7 @@
 
+/* Didn't really finish
+ * Will finish whenever I can */
+
 #include "../support/myIncludes.hpp"
 using namespace std;
 
@@ -372,4 +375,5 @@ public:
 
 int main() {
 	rbTreeP <int> tree;
+
 }
