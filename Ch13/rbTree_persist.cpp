@@ -1,6 +1,9 @@
-#ifndef RBTREE_H_
-#define RBTREE_H_
 
+#include "../support/myIncludes.hpp"
+using namespace std;
+
+#ifndef RBTREE_P_HPP
+#define RBTREE_P_HPP
 
 #define _RED_	true
 #define _BLACK_	false
@@ -59,42 +62,18 @@ public:
 };
 
 template <typename T>
-class rbTree {
+class rbTreeP {
 protected:
-	Node<T> * root;
-	Node<T> * NIL; // sentinel
-	void treeDelete(Node <T> * node) {
-		// Use postorder tree walk to delete the entries
+	Node<T> *root;
+	Node<T> *NIL;
+	vector<Node<T>*> version;
+	void treeDelete(Node<T> *node) {
 		if (node != NULL && node != NIL) {
 			treeDelete(node->left);
 			treeDelete(node->right);
 			delete node;
 		}
 	}
-public:
-	rbTree() {
-		// this->root = new Node<T>;
-		this->NIL = new Node<T>;
-		
-		/* Set the NIL to point to itself */
-		this->NIL->parent = this->NIL;
-		this->NIL->left = this->NIL;
-		this->NIL->right = this->NIL;
-
-		this->root = this->NIL;
-	}
-	rbTree(Node<T> * node) {
-		this->root = node;
-		this->root->parent = this->NIL;
-		fixTree(this->root);
-	}
-	
-	~rbTree() {
-		// delete this->root->parent;
-		treeDelete(this->root);
-		delete this->NIL;
-	}
-
 	void fixTree(Node<T> * node) {
 		// replace NULL's with NIL's
 		if (node->left == this->NIL) {
@@ -114,7 +93,36 @@ public:
 			fixTree(node->right);
 		}
 	}
-	
+public:
+	rbTreeP() {
+		this->NIL = new Node<T>;
+
+		this->NIL->parent = this->NIL;
+		this->NIL->left = this->NIL;
+		this->NIL->right = this->NIL;
+
+		this->root = this->NIL;
+		if (version.empty()) { // There are no previous versions
+			version.push_back(this->root);
+			this->root = *version.end();
+		}
+	}
+	rbTreeP(Node<T> * node) {
+		this->root = node;
+		this->root->parent = this->NIL;
+		fixTree(this->root);
+		if (version.empty()) { // There are no previous versions
+			version.push_back(this->root);
+			this->root = *version.end();
+		}
+	}
+	~rbTreeP() {
+		for (typename vector<Node<T> *>::iterator it = version.begin(); it != version.end(); ++it){
+			treeDelete(*it);
+		}
+		delete this->NIL;
+	}
+
 	void leftRotate(Node<T> *x) {	// page 313
 		Node<T> * y = x->right;	// set y
 		x->right = y->left;		// turn y's left subtree into x's right subtree
@@ -357,8 +365,11 @@ public:
 			print(node->right);
 		}
 	}
-	
 };
 
-
 #endif
+
+
+int main() {
+	rbTreeP <int> tree;
+}
